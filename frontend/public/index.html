@@ -25,6 +25,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      #map{
+        height: 400px; 
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +45,34 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      // function initMap(){
+      //   let options = {
+      //     zoom: 8,
+      //     center: {
+      //       lat: 40.730610,
+      //       lng: -73.935242
+      //     }
+      //   }
+
+      //   let map = new google.maps.Map(document.getElementById('map'), options);
+
+      //   let marker = new google.maps.Marker({
+      //     position: {
+      //       lat: 40.730610,
+      //       lng: -73.935242
+      //     },
+      //     map: map,
+      //     icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+      //   })
+
+      //   google.maps.event.addListener(map, "click", 
+      //   function(event){
+      //     console.log(event.latLng.lat())
+      //     console.log(event.latLng.lng())
+      //   });
+
+      // }
+    </script>
   </body>
 </html>
