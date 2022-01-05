@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import GoogleMapComponent from "../GoogleMap/GoogleMapComponent";
 
 const SearchBar = () => {
 
     const [query, setQuery] = useState("");
+    const [coordinates, setCoordinates] = useState({
+        lat: 40.730610,
+        lng: -73.935242
+    });
     const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
@@ -11,8 +16,8 @@ const SearchBar = () => {
             let requestBody = {
                 "query": query,
                 "position": {
-                    "lng": -74.0060,
-                    "lat": 40.7128 
+                    "lat": coordinates.lat,
+                    "lng": coordinates.lng 
                 }
             }
     
@@ -35,7 +40,7 @@ const SearchBar = () => {
         {
             setSuggestions([]);
         }
-    }, [query])
+    }, [query, coordinates])
 
     const onChangeSearch = (e) => {
             setQuery(e.target.value);
@@ -51,7 +56,10 @@ const SearchBar = () => {
                 </div>
                 )
             })}
-            <div id="map"></div>
+            <GoogleMapComponent setCoordinates={setCoordinates} />
+            {Object.values(coordinates).forEach(value => {
+                return(<p>{value}</p>)
+            })}
         </div>
     );
 }
