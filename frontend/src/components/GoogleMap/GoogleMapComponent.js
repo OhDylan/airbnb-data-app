@@ -45,7 +45,7 @@ function GoogleMapComponent({setCoordinates}) {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={8}
+          zoom={5}
           onLoad={onLoad}
           onUnmount={onUnmount}
           onRightClick={onRightClickChange}

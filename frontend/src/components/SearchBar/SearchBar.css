@@ -1,0 +1,22 @@
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.search-bar{
+    width: 90%;
+}
+
+.suggestion-box{
+    width: 90%;
+    border: 1px solid black;
+    padding: 0 5px 0 5px;
+}
+
+.suggestion-box:hover{
+    background: gray;
+    color: white;
+    cursor: pointer;
+}
