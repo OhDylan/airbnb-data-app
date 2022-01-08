@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
+import Button from '@mui/material/Button';
+import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import SearchBar from "../../components/SearchBar/SearchBar";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
-import Button from "../../components/Button/Button";
 import "./SearchPage.css";
 
 const SearchPage = () => {
@@ -39,7 +40,12 @@ const SearchPage = () => {
                 {
                     result = result.slice(0, 10)
                 }
-                setSuggestions(result)
+                let returnSuggestions = []
+                result.forEach(property => {
+                    returnSuggestions.push(property.name)
+                });
+                
+                setSuggestions(returnSuggestions)
             })
             .catch((err) => console.error(err))
         }
@@ -90,7 +96,7 @@ const SearchPage = () => {
             <div className="search-container">
                 <SearchBar query={query} setQuery={setQuery} suggestions={suggestions} setSuggestions={setSuggestions} />
                 <GoogleMapComponent setCoordinates={setCoordinates} />
-                <Button callback={search} text="Search" />
+                <Button endIcon={<LocationSearchingIcon />} onClick={search} variant="contained" color="primary" >Search</Button>
             </div>
             <div>
                 {results.map((result) => {

@@ -15,46 +15,85 @@ const client = new MongoClient(`mongodb+srv://${process.env.MONGODBUSER}:${proce
 let collection;
 
 app.post("/search", async (req, res, next) => {
+    
     try{
-        let result = await collection.aggregate([
-            {
-                $search: {
-                    "index": "autocomplete",
-                    "compound": {
-                        "must": [
-                            {
-                                "autocomplete": {
-                                    "query": `${req.body.query}`,
-                                    "path": "name"
-                                }
-                            },
-                            {
-                                "geoWithin": {
-                                    "circle": {
-                                        "center": {
-                                            "type": "Point",
-                                            "coordinates": [req.body.position.lng, req.body.position.lat]
+        let result = null;
+        if(req.body.query != "")
+        {
+            result = await collection.aggregate([
+                {
+                    $search: {
+                        "index": "autocomplete",
+                        "compound": {
+                            "must": [
+                                {
+                                    "autocomplete": {
+                                        "query": `${req.body.query}`,
+                                        "path": "name"
+                                    }
+                                },
+                                {
+                                    "geoWithin": {
+                                        "circle": {
+                                            "center": {
+                                                "type": "Point",
+                                                "coordinates": [req.body.position.lng, req.body.position.lat]
+                                            },
+                                            "radius": 10000
                                         },
-                                        "radius": 10000
-                                    },
-                                    "path": "address.location"
+                                        "path": "address.location"
+                                    }
                                 }
-                            }
-                        ]
+                            ]
+                        }
+                    }
+                },
+                {
+                    "$project": {
+                        "name": 1,
+                        "address": 1,
+                        "score": {"$meta": "searchScore"}
                     }
                 }
-            },
-            {
-                "$project": {
-                    "name": 1,
-                    "address": 1,
-                    "score": {"$meta": "searchScore"}
+            ]).toArray();
+        }
+        else
+        {
+            result = await collection.aggregate([
+                {
+                    $search: {
+                        "index": "autocomplete",
+                        "compound": {
+                            "must": [
+                                {
+                                    "geoWithin": {
+                                        "circle": {
+                                            "center": {
+                                                "type": "Point",
+                                                "coordinates": [req.body.position.lng, req.body.position.lat]
+                                            },
+                                            "radius": 10000
+                                        },
+                                        "path": "address.location"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "$project": {
+                        "name": 1,
+                        "address": 1,
+                        "score": {"$meta": "searchScore"}
+                    }
                 }
-            }
-        ]).toArray();
+            ]).toArray();
+        }
         res.send(result);
     }catch(err){
         res.status(500).send({message: err.message});
+        console.error(err)
     }
 });
 
