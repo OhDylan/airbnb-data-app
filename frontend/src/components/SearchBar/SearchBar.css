@@ -1,10 +1,3 @@
-.search-container{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: hidden;
-}
-
 .search-bar{
     width: 90%;
 }
@@ -13,6 +6,7 @@
     width: 90%;
     border: 1px solid black;
     padding: 0 5px 0 5px;
+    overflow: hidden;
 }
 
 .suggestion-box:hover{
