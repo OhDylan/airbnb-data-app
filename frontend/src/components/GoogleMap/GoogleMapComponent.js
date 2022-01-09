@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-    width: '400px',
-    height: '400px'
+    width: '92%',
+    height: '300px'
 };
   
 const center = {
@@ -11,18 +11,17 @@ const center = {
     lng: -73.935242
 };
 
-function GoogleMapComponent({setCoordinates}) {
+function GoogleMapComponent({coordinates, setCoordinates}) {
     const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
   
     const [map, setMap] = React.useState(null)
-    const [position, setPosition] = useState({})
   
     const onLoad = React.useCallback(function callback(map) {
-      const bounds = new window.google.maps.LatLngBounds();
-      map.fitBounds(bounds);
+      // const bounds = new window.google.maps.LatLngBounds();
+      // map.fitBounds(bounds);
       setMap(map)
     }, [])
   
@@ -35,23 +34,19 @@ function GoogleMapComponent({setCoordinates}) {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
       })
-      setPosition({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng()
-      });
     }
   
     return isLoaded ? (
         <GoogleMap
           mapContainerStyle={containerStyle}
+
           center={center}
-          zoom={5}
+          zoom={4}
+          onRightClick={onRightClickChange}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          onRightClick={onRightClickChange}
         >
-          <Marker position={position} />
-          <></>
+          <Marker position={coordinates} />
         </GoogleMap>
     ) : <></>
   }

@@ -11,23 +11,14 @@ const SearchBar = ({query, setQuery, suggestions, setSuggestions}) => {
 
     return(
         <div className="search-container">
-            {/* <div className="search-box">
-                <input className="search-bar" placeholder="Search For Property Name" onChange={onChangeSearch} value={query}/>
-                {suggestions.map((suggestion) => {
-                    return(
-                    <div key={suggestion.id} className="suggestion-box" onClick={() => setText(suggestion.name)}>
-                        <p>{suggestion.name}</p>
-                    </div>
-                    )
-                })}
-            </div> */}
             <Autocomplete
                 onInputChange={onChangeSearch}
                 inputValue={query}
                 disablePortal
+                autoHighlight
                 id="combo-box-demo"
                 options={suggestions}
-                sx={{ width: 300 }}
+                sx={{ width: 1 , backgroundColor:"white" }}
                 renderInput={(params) => <TextField {...params} label="Property Name" />}
             />
         </div>

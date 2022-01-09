@@ -39,7 +39,7 @@ app.post("/search", async (req, res, next) => {
                                                 "type": "Point",
                                                 "coordinates": [req.body.position.lng, req.body.position.lat]
                                             },
-                                            "radius": 10000
+                                            "radius": 100000
                                         },
                                         "path": "address.location"
                                     }
@@ -52,6 +52,9 @@ app.post("/search", async (req, res, next) => {
                     "$project": {
                         "name": 1,
                         "address": 1,
+                        "summary": 1,
+                        "images": 1,
+                        "price": 1,
                         "score": {"$meta": "searchScore"}
                     }
                 }
@@ -85,6 +88,9 @@ app.post("/search", async (req, res, next) => {
                     "$project": {
                         "name": 1,
                         "address": 1,
+                        "summary": 1,
+                        "images": 1,
+                        "price": 1,
                         "score": {"$meta": "searchScore"}
                     }
                 }
