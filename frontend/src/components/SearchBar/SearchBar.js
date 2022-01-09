@@ -1,5 +1,4 @@
 import React from "react";
-import "./SearchBar.css";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 

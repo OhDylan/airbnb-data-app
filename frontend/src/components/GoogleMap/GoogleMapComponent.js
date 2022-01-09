@@ -2,7 +2,7 @@ import React from 'react'
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 const containerStyle = {
-    width: '92%',
+    width: '100%',
     height: '300px'
 };
   
@@ -17,23 +17,23 @@ function GoogleMapComponent({coordinates, setCoordinates}) {
       googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
   
-    const [map, setMap] = React.useState(null)
+    const [map, setMap] = React.useState(null);
   
     const onLoad = React.useCallback(function callback(map) {
       // const bounds = new window.google.maps.LatLngBounds();
       // map.fitBounds(bounds);
       setMap(map)
-    }, [])
+    }, []);
   
     const onUnmount = React.useCallback(function callback(map) {
       setMap(null)
-    }, [])
+    }, []);
 
     const onRightClickChange = (e) => {
       setCoordinates({
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
-      })
+      });
     }
   
     return isLoaded ? (
@@ -51,4 +51,4 @@ function GoogleMapComponent({coordinates, setCoordinates}) {
     ) : <></>
   }
   
-  export default React.memo(GoogleMapComponent)
+  export default React.memo(GoogleMapComponent);
