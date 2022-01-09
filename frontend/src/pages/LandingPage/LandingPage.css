@@ -1,0 +1,10 @@
+.container{
+    position: relative;
+}
+
+.image-modal{
+    position: absolute;
+    height: 100vh;
+    right: 10px;
+    top: 50px;
+}
