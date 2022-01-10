@@ -12,7 +12,7 @@ const ResultCard = styled(Card)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(2),
     textAlign: 'center',
-    height: '300px',
+    height: '450px',
     position: 'relative',
     backgroundColor: 'rgb(245,245,250)'
 }))
@@ -22,7 +22,7 @@ const PropertyCard = ({result}) => {
         <Grid item xs={12} sm={6} md={4}>
             <ResultCard>
                 <CardActionArea>
-                    <CardMedia component="img" height="150" image={result.images.picture_url} alt="Property Image" />
+                    <CardMedia component="img" height="300" image={result.images.picture_url} alt="Property Image" />
                     <CardContent height="200px">
                         <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                             {result.name}

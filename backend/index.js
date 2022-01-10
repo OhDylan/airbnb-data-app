@@ -7,15 +7,14 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors())
 
 const client = new MongoClient(`mongodb+srv://${process.env.MONGODBUSER}:${process.env.MONGODBPW}@cluster0.earoy.mongodb.net/sample_airbnb?retryWrites=true&w=majority`, {useUnifiedTopology: true});
 
 let collection;
 
 app.post("/search", async (req, res, next) => {
-    
     try{
         let result = null;
         if(req.body.query != "")
@@ -103,7 +102,7 @@ app.post("/search", async (req, res, next) => {
     }
 });
 
-app.listen(5000, async() => {
+app.listen(process.env.PORT || 5000, async() => {
     try{
         await client.connect();
         collection = client.db("sample_airbnb").collection("listingsAndReviews");

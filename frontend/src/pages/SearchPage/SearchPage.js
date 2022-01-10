@@ -20,6 +20,7 @@ const SearchPage = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [results, setResults] = useState([]);
     const [searched, setSearched] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if(query !== "")
@@ -32,7 +33,7 @@ const SearchPage = () => {
                 }
             }
     
-            fetch("http://localhost:5000/search", {
+            fetch("https://do-airbnb.herokuapp.com/search", {
                 method: "POST",
                 mode: "cors",
                 headers: {
@@ -58,6 +59,8 @@ const SearchPage = () => {
 
     const search = () => {
         setResults([]);
+        setSearched(false);
+        setIsLoading(true);
         let requestBody = {
             "query": query,
             "position": {
@@ -66,7 +69,7 @@ const SearchPage = () => {
             }
         }
 
-        fetch("http://localhost:5000/search", {
+        fetch("https://do-airbnb.herokuapp.com/search", {
             method: "POST",
             mode: "cors",
             headers: {
@@ -80,8 +83,12 @@ const SearchPage = () => {
             {
                 result = result.slice(0, 18);
             }
+            setIsLoading(false);
             setResults(result);
-            setSearched(true);
+            if(result.length === 0)
+            {
+                setSearched(true);
+            }
         })
         .catch((err) => console.error(err));
     }
@@ -103,6 +110,9 @@ const SearchPage = () => {
                     <Typography variant="subtitle2">Please right click to select the desired location on map.</Typography>
                 </Grid>
                 <Grid item xs={0} sm={2}></Grid>
+                {isLoading && 
+                    <Typography variant="button">Loading...</Typography>
+                }
                 {results.length > 0 && results.map((result) => {
                     if(result.summary.length > 100)
                     {

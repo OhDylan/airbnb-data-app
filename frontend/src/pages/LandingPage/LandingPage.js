@@ -13,7 +13,7 @@ const ResultCard = styled(Card)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(2),
     textAlign: 'center',
-    height: '580px',
+    height: '900px',
     position: 'relative',
     color: '#E6E6FA',
     backgroundColor: 'rgb(0,0,0)'
@@ -29,8 +29,8 @@ const LandingPage = () => {
                         <CardContent>
                             <Typography variant="h4" >Airbnb Sample App</Typography>
                         </CardContent>
-                        <CardMedia component="img" height="380" image={require("../../assets/10751.jpg")} alt="Property Image" />
-                        <CardContent height="300px">
+                        <CardMedia component="img" height="65%" image={require("../../assets/10751.jpg")} alt="Property Image" />
+                        <CardContent >
                             <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
                                 Please note that this is only a demo app where all the test data is derived from MongoDB's sample data set.
                             </Typography>
