@@ -38,7 +38,7 @@ app.post("/search", async (req, res, next) => {
                                                 "type": "Point",
                                                 "coordinates": [req.body.position.lng, req.body.position.lat]
                                             },
-                                            "radius": 100000
+                                            "radius": 10000
                                         },
                                         "path": "address.location"
                                     }
