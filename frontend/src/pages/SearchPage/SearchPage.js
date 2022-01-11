@@ -14,8 +14,8 @@ const SearchPage = () => {
 
     const [query, setQuery] = useState("");
     const [coordinates, setCoordinates] = useState({
-        lat: 40.730610,
-        lng: -73.935242
+        lat: -33.865143,
+        lng: 151.209900
     });
     const [suggestions, setSuggestions] = useState([]);
     const [results, setResults] = useState([]);
