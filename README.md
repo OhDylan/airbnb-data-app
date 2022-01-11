@@ -12,7 +12,7 @@ This is a simple full stack demo app that was built with:
 
 This app makes use of the sample data sets of Airbnb, provided by MongoDB. It demonstrates the use case of geoWithin operator to perform geographical search (lat and lng) in a smooth and fast way. Wanted to create an autocomplete (real time retrieval of database index field), but came across this available test dataset from the documentation ([geoWithin - MongoDB Atlas](https://docs.atlas.mongodb.com/atlas-search/geoWithin/)), and found out that this geoWithin is more powerful than I thought. 
 
-In this app, user can search type in the keyword and pin the desired location (right click on the map), and while you type, it is retrieving data on the pre-indexed fields from MongoDB and presenting them as suggestions to the users. Creating different types of index fields were easy, as I found on YouTube the exactly thing that I wanted to do. Here's a take of the search page:
+In this app, user can search type in the keyword and pin the desired location (right click on the map), and while you type, it is retrieving data on the pre-indexed fields from MongoDB and presenting them as suggestions to the users. Creating different types of index fields were easy, as I found on YouTube the exactly thing that I wanted to do. Click on the link to check out this demo app:
 
 [Live Demo](https://airbnb-app-data-app-frontend.vercel.app)
 
